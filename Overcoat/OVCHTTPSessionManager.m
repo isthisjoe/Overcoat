@@ -29,7 +29,6 @@
 
 @interface OVCHTTPSessionManager ()
 
-@property (strong, nonatomic) NSManagedObjectContext *backgroundContext;
 @property (strong, nonatomic) id contextObserver;
 
 @end
@@ -230,11 +229,11 @@
     }
     
     if ([self.managedObjectContext concurrencyType] == NSPrivateQueueConcurrencyType) {
-        self.backgroundContext = self.managedObjectContext;
+        _backgroundContext = self.managedObjectContext;
         return;
     }
     
-    self.backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [self.backgroundContext setPersistentStoreCoordinator:self.managedObjectContext.persistentStoreCoordinator];
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];

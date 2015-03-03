@@ -38,6 +38,12 @@
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
+ The background managed object context used for background persistance.
+ */
+@property (strong, nonatomic, readonly) NSManagedObjectContext *backgroundContext;
+
+
+/**
  Returns the class used to create responses.
  
  This method returns the `OVCResponse` class object by default. Subclasses can override this method
